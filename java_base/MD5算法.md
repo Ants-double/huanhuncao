@@ -160,3 +160,4 @@ public static String createMd5WithSalt(String input) throws NoSuchAlgorithmExcep
 
 -  建议使用安全随机数。
 - 其它几种方式加盐同理，只是生面md5的来源不同
+- [源码](https://github.com/Ants-double/renshenguo)
