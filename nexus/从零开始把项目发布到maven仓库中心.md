@@ -7,7 +7,7 @@
   [https://issues.sonatype.org](https://issues.sonatype.org/)
 
   ``` wiki
-  1. 密码符号规范，并且工记住
+  1. 密码符号规范，并且要记住
   ```
 
   
