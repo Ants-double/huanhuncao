@@ -31,33 +31,42 @@ version: '3.1'
 
 services:
   zoo1:
-    image: zookeeper:3.4.14
+    image: zookeeper
     restart: always
-    hostname: zoo1
+    container_name: zook1
+    hostname: zook1
     ports:
       - 2187:2181
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 server.2=zoo2:2888:3888;2181 server.3=zoo3:2888:3888;2181
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 server.2=zook2:2888:3888;2181 server.3=zook3:2888:3888;2181
+    volumes: 
+      - ./zook1:/conf
 
   zoo2:
-    image: zookeeper:3.4.14
+    image: zookeeper
     restart: always
-    hostname: zoo2
+    container_name: zook2
+    hostname: zook2
     ports:
       - 2188:2181
     environment:
       ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zoo3:2888:3888;2181
+      ZOO_SERVERS: server.1=zook1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zook3:2888:3888;2181
+    volumes: 
+      - ./zook1:/conf
 
   zoo3:
-    image: zookeeper:3.4.14
+    image: zookeeper
     restart: always
-    hostname: zoo3
+    container_name: zook3
+    hostname: zook3
     ports:
       - 2189:2181
     environment:
       ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2181 server.3=0.0.0.0:2888:3888;2181
+      ZOO_SERVERS: server.1=zook1:2888:3888;2181 server.2=zook2:2888:3888;2181 server.3=0.0.0.0:2888:3888;2181
+    volumes: 
+      - ./zook1:/conf
 ```
 
