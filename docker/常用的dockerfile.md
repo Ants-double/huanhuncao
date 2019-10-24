@@ -1,0 +1,14 @@
+# 常用的dockerfile
+
+## 启动jar
+
+``` dockerfile
+FROM java:8u111
+LABEL create=lyy
+COPY luzhou-service-content-provider-1.0-SNAPSHOT.jar /usr/src/myapp/provider.jar
+WORKDIR /usr/src/myapp
+EXPOSE 6669
+CMD java -jar /usr/src/myapp/provider.jar
+
+```
+
