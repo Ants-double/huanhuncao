@@ -141,3 +141,35 @@ networks:
 
 ```
 
+## nginx
+
+```shell
+docker run  --name mynginx -d -p 80:80 -v E:/docker/luzhou/nginx/nginx.conf:/etc/nginx/nginx.conf -v E:/docker/luzhou/nginx/conf.d:/etc/nginx/conf.d  -v E:/docker/luzhou/nginx/logs:/var/log/nginx nginx
+```
+
+
+
+``` yaml
+version: '3.1'
+services:
+  nginx:
+    # build: 
+    #   context: .
+    #   dockerfile: nginxdockerfile    
+    restart: always
+    image: nginx
+    container_name: luzhounginx
+    networks: 
+      - nets
+    ports:
+      - 80:80
+    volumes:
+      - ./conf:/etc/nginx     #映射nginx的配置文件到容器里
+      # - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs:/var/log/nginx
+    # command: [nginx-debug, '-g', 'daemon off;']
+networks: 
+    nets:   
+      external: false   
+```
+
