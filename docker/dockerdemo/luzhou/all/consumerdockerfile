@@ -1,0 +1,6 @@
+FROM java:8u111
+LABEL create=lyy
+COPY luzhou-service-content-consumer-1.0-SNAPSHOT.jar /usr/src/myapp/consumer.jar
+WORKDIR /usr/src/myapp
+EXPOSE 7779
+CMD java -jar /usr/src/myapp/consumer.jar

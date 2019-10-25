@@ -1,0 +1,9 @@
+FROM ubuntu
+MAINTAINER antsdouble ants_double@yeah.net
+
+WORKDIR /usr/local/docker
+
+RUN groupadd -r antsdouble && useradd -r -g antsdouble antsdouble
+USER antsdouble
+
+ENTRYPOINT ["/bin/bash"]

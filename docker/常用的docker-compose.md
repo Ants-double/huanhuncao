@@ -70,3 +70,74 @@ services:
       - ./zook1:/conf
 ```
 
+## 启动自定义的dockerfile
+
+``` yaml
+version: '3.1'
+services: 
+    consumer:
+       build: 
+         context: .
+         dockerfile: dockerfile
+       image: consumer
+       container_name: luzhouconsumer
+       restart: always
+       networks: 
+         - nets
+       volumes: 
+         - ./contentconsumer.log:/usr/src/myapp/contentconsumer.log
+       ports: 
+         - 7779:7779
+       environment: 
+         - JAVA_OPTS=-Xmx256M -Dspring.profiles.active=test -Duser.timezone=GMT+08
+networks: 
+    nets:   
+      external: false    
+
+
+```
+
+
+
+## 同时启动多个jar
+
+``` yml
+version: '3.1'
+services: 
+    provider:
+       build: 
+         context: .
+         dockerfile: providerdockerfile
+       image: provider
+       container_name: luzhouprovider
+       restart: always
+       networks: 
+         - nets
+       volumes: 
+         - ./contentprovider.log:/usr/src/myapp/contentprovider.log
+       ports: 
+         - 6669:6669
+       environment: 
+         - JAVA_OPTS=-Xmx256M -Dspring.profiles.active=test -Duser.timezone=GMT+08
+    consumer:
+       build: 
+         context: .
+         dockerfile: consumerdockerfile
+       image: consumer
+       container_name: luzhouconsumer
+       restart: always
+       networks: 
+         - nets
+       volumes: 
+         - ./contentconsumer.log:/usr/src/myapp/contentconsumer.log
+       ports: 
+         - 7779:7779
+       environment: 
+         - JAVA_OPTS=-Xmx256M -Dspring.profiles.active=test -Duser.timezone=GMT+08
+networks: 
+    nets:   
+      external: false    
+
+
+```
+

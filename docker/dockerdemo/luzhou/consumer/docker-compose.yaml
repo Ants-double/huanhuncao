@@ -1,0 +1,21 @@
+version: '3.1'
+services: 
+    consumer:
+       build: 
+         context: .
+         dockerfile: dockerfile
+       image: consumer
+       container_name: luzhouconsumer
+       restart: always
+       networks: 
+         - nets
+       volumes: 
+         - ./contentconsumer.log:/usr/src/myapp/contentconsumer.log
+       ports: 
+         - 7779:7779
+       environment: 
+         - JAVA_OPTS=-Xmx256M -Dspring.profiles.active=test -Duser.timezone=GMT+08
+networks: 
+    nets:   
+      external: false    
+
