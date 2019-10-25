@@ -1,5 +1,19 @@
 # 常用的docker-compose
 
+## 常用命令
+
+``` wiki
+docker-compose up -d
+docker-compose down 
+
+docker-compose stop
+docker-compose start
+ <-- 重新编译dockerfile生成镜像-->
+docker-compose up -d --build
+```
+
+
+
 ## mysql
 
 ``` yml
