@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  master:
+    image: redis
+    container_name: redis-master
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf --port 6379 --requirepass everise  --appendonly yes 
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis_data:/data
+ 
+  slave1:
+    image: redis
+    container_name: redis-slave-1
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf --slaveof 10.194.67.168 6379 --port 6380  --requirepass everise --masterauth everise  --appendonly yes
+    ports:
+      - 6380:6380
+    volumes:
+      - ./redis1.conf:/usr/local/etc/redis/redis.conf
+      - ./redis_data:/data
+ 
+ 
+  slave2:
+    image: redis
+    container_name: redis-slave-2
+    restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf --slaveof 10.194.67.168 6379 --port 6381  --requirepass everise --masterauth everise  --appendonly yes
+    ports:
+      - 6381:6381
+    volumes:
+      - ./redis2.conf:/usr/local/etc/redis/redis.conf
+      - ./redis_data:/data
