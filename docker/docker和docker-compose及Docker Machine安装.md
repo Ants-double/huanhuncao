@@ -6,11 +6,18 @@ centos7
 
 1. 在线安装
 
-   参考网址： [https://github.com/docker/docker-install ]( https://github.com/docker/docker-install )
+   参考网址：https://docs.docker.com/engine/install/centos/
 
    ``` shell
-   curl -fsSL https://get.docker.com -o get-docker.sh
-   sh get-docker.sh
+   sudo yum install -y yum-utils
+   sudo yum-config-manager \
+       --add-repo \
+       https://download.docker.com/linux/centos/docker-ce.repo
+   sudo yum-config-manager --enable docker-ce-nightly
+   sudo yum install docker-ce docker-ce-cli containerd.io
+   sudo yum install docker-ce-19.03.9 docker-ce-cli-19.03.9 containerd.io
+   sudo systemctl start docker
+   sudo docker run hello-world
    ```
 
    
