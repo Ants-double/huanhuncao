@@ -88,10 +88,9 @@ centos7
    如果使用pip安装 执行下面
 
    ``` shell
-   pip uninstall docker-compose
+   pip uninstall docker-c
    ```
 
-   
 
 ## Docker Machine
 
